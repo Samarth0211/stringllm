@@ -15,34 +15,32 @@ from server.routes.playground import router as playground_router
 
 STATIC_DIR = Path(__file__).resolve().parent / "static"
 
-app = FastAPI(
-    title="StringLLM Playground",
-    description="Interactive playground for building and running StringLLM chains.",
-    version="0.1.0",
-)
 
-# ---------------------------------------------------------------------------
-# CORS — allow everything so the playground works from any origin
-# ---------------------------------------------------------------------------
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+def create_app() -> FastAPI:
+    """Factory function to create the FastAPI application."""
+    application = FastAPI(
+        title="StringLLM Playground",
+        description="Interactive playground for building and running StringLLM chains.",
+        version="0.1.0",
+    )
 
-# ---------------------------------------------------------------------------
-# Routers
-# ---------------------------------------------------------------------------
-app.include_router(chains_router)
-app.include_router(providers_router)
-app.include_router(playground_router)
+    application.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
-# ---------------------------------------------------------------------------
-# Static files (CSS / JS served from /static/…)
-# ---------------------------------------------------------------------------
-app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
+    application.include_router(chains_router)
+    application.include_router(providers_router)
+    application.include_router(playground_router)
+    application.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
+
+    return application
+
+
+app = create_app()
 
 
 # ---------------------------------------------------------------------------
