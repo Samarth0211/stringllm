@@ -1,0 +1,50 @@
+site_name: StringLLM
+site_description: Chain free LLMs together like strings to solve complex tasks
+site_author: Samarth Bhamare
+repo_url: https://github.com/samarthbhamare/stringllm
+repo_name: samarthbhamare/stringllm
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - content.code.copy
+    - content.code.annotate
+
+docs_dir: docs
+
+nav:
+  - Home: index.md
+  - Quickstart: quickstart.md
+  - Providers: providers.md
+  - Chains: chains.md
+  - Memory: memory.md
+  - Examples: examples.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html

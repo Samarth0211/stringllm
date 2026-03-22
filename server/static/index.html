@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StringLLM Playground</title>
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+    <div class="app-container">
+
+        <!-- ============================================================= -->
+        <!-- Header                                                         -->
+        <!-- ============================================================= -->
+        <header>
+            <div class="header-left">
+                <span class="logo-icon">&#9879;</span>
+                <h1>StringLLM Playground</h1>
+            </div>
+            <div class="provider-dots" id="provider-dots">
+                <!-- Filled dynamically -->
+            </div>
+        </header>
+
+        <!-- ============================================================= -->
+        <!-- Main Grid                                                      -->
+        <!-- ============================================================= -->
+        <div class="main-grid">
+            <!-- Left Column -->
+            <div class="main-content">
+
+                <!-- Chain Builder -->
+                <section>
+                    <div class="section-header">
+                        <h2>Chain Builder</h2>
+                        <button class="btn btn-sm" id="add-node-btn">+ Add Node</button>
+                    </div>
+
+                    <div class="provider-row">
+                        <label for="provider-select">Provider</label>
+                        <select id="provider-select">
+                            <option value="gemini">Gemini</option>
+                            <option value="groq">Groq</option>
+                            <option value="huggingface">HuggingFace</option>
+                            <option value="fallback">Fallback</option>
+                        </select>
+                    </div>
+
+                    <div class="nodes-container" id="nodes-container">
+                        <!-- Node cards rendered here -->
+                    </div>
+                </section>
+
+                <!-- Input -->
+                <section class="input-section card">
+                    <label for="input-text">Input Text</label>
+                    <textarea
+                        id="input-text"
+                        placeholder="Enter the initial text that will be passed to the first node as {text} ..."
+                        rows="5"
+                    ></textarea>
+                </section>
+
+                <!-- Run Button -->
+                <button class="btn btn-primary btn-run" id="run-btn">
+                    <span class="spinner"></span>
+                    <span class="btn-text">Run Chain</span>
+                </button>
+
+                <!-- Error -->
+                <div class="error-message" id="error-box"></div>
+
+                <!-- Results -->
+                <section class="results-section" id="results-section">
+                    <!-- Filled dynamically after chain execution -->
+                </section>
+            </div>
+
+            <!-- Right Column — Sidebar -->
+            <aside class="sidebar">
+                <!-- Example Chains -->
+                <div class="card">
+                    <div class="section-header">
+                        <h2>Examples</h2>
+                    </div>
+                    <div class="example-list">
+                        <button class="example-btn" data-example="summarize_analyze">
+                            <div class="example-name">Summarize &amp; Analyze</div>
+                            <div class="example-desc">Summarize text, then analyze sentiment.</div>
+                        </button>
+                        <button class="example-btn" data-example="translate_pipeline">
+                            <div class="example-name">Translate Pipeline</div>
+                            <div class="example-desc">Translate to French and back, then compare.</div>
+                        </button>
+                        <button class="example-btn" data-example="code_review">
+                            <div class="example-name">Code Review</div>
+                            <div class="example-desc">Review code and generate improvements.</div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Prompt Templates -->
+                <div class="card templates-section">
+                    <div class="section-header">
+                        <h2>Templates</h2>
+                    </div>
+                    <div id="templates-list">
+                        <span class="template-chip">Loading...</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- Footer                                                         -->
+        <!-- ============================================================= -->
+        <footer>
+            Built with <strong>StringLLM</strong> &mdash;
+            <a href="https://github.com/Samarth0211/stringllm" target="_blank" rel="noopener">
+                GitHub
+            </a>
+        </footer>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
