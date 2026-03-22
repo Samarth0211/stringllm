@@ -125,7 +125,7 @@ print(f"Time: {result.total_time_ms:.0f}ms")
 
 | Provider | Model | Free Tier Limits | Speed |
 |----------|-------|-----------------|-------|
-| **Gemini** | gemini-2.0-flash | 15 RPM, 1M tokens/day | Fast |
+| **Gemini** | gemini-2.5-flash | 15 RPM, 1M tokens/day | Fast |
 | **Groq** | llama-3.3-70b-versatile | 30 RPM, 14.4K tokens/min | Very Fast |
 | **HuggingFace** | Mistral-7B-Instruct-v0.3 | Rate limited | Moderate |
 | **Fallback** | Tries all in order | Combined limits | Resilient |

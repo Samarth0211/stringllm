@@ -21,7 +21,7 @@ async def test_gemini_generate(monkeypatch: pytest.MonkeyPatch):
 
     from stringllm.providers.gemini import GeminiProvider
 
-    provider = GeminiProvider(api_key="test-gemini-key", model="gemini-2.0-flash")
+    provider = GeminiProvider(api_key="test-gemini-key", model="gemini-2.5-flash")
 
     mock_response = {
         "candidates": [
@@ -43,7 +43,7 @@ async def test_gemini_generate(monkeypatch: pytest.MonkeyPatch):
         # Use regex pattern to match URL with query parameters
         pattern = re.compile(
             r"^https://generativelanguage\.googleapis\.com/v1beta/models/"
-            r"gemini-2\.0-flash:generateContent\?key=.+$"
+            r"gemini-2\.5-flash:generateContent\?key=.+$"
         )
         mocked.post(pattern, payload=mock_response, repeat=True)
 
@@ -52,7 +52,7 @@ async def test_gemini_generate(monkeypatch: pytest.MonkeyPatch):
     assert isinstance(result, ProviderResponse)
     assert result.text == "This is a summary of the text."
     assert result.tokens_used == 18
-    assert result.model == "gemini-2.0-flash"
+    assert result.model == "gemini-2.5-flash"
     assert result.provider == "gemini"
 
 
@@ -63,15 +63,15 @@ async def test_gemini_health_check(monkeypatch: pytest.MonkeyPatch):
 
     from stringllm.providers.gemini import GeminiProvider
 
-    provider = GeminiProvider(api_key="test-gemini-key", model="gemini-2.0-flash")
+    provider = GeminiProvider(api_key="test-gemini-key", model="gemini-2.5-flash")
 
     with aioresponses() as mocked:
         # Use regex pattern to match URL with query parameters
         pattern = re.compile(
             r"^https://generativelanguage\.googleapis\.com/v1beta/models/"
-            r"gemini-2\.0-flash\?key=.+$"
+            r"gemini-2\.5-flash\?key=.+$"
         )
-        mocked.get(pattern, status=200, payload={"name": "gemini-2.0-flash"})
+        mocked.get(pattern, status=200, payload={"name": "gemini-2.5-flash"})
 
         healthy = await provider.health_check()
 
@@ -85,12 +85,12 @@ async def test_gemini_health_check_failure(monkeypatch: pytest.MonkeyPatch):
 
     from stringllm.providers.gemini import GeminiProvider
 
-    provider = GeminiProvider(api_key="test-gemini-key", model="gemini-2.0-flash")
+    provider = GeminiProvider(api_key="test-gemini-key", model="gemini-2.5-flash")
 
     with aioresponses() as mocked:
         pattern = re.compile(
             r"^https://generativelanguage\.googleapis\.com/v1beta/models/"
-            r"gemini-2\.0-flash\?key=.+$"
+            r"gemini-2\.5-flash\?key=.+$"
         )
         mocked.get(pattern, status=500)
 

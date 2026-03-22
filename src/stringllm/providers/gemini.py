@@ -21,7 +21,7 @@ class GeminiProvider(BaseLLMProvider):
         self,
         *,
         api_key: str | None = None,
-        model: str = "gemini-2.0-flash",
+        model: str = "gemini-2.5-flash",
     ) -> None:
         self._api_key = api_key or os.environ.get("GEMINI_API_KEY", "")
         if not self._api_key:

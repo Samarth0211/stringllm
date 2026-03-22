@@ -13,7 +13,7 @@ from stringllm import GeminiProvider
 
 provider = GeminiProvider(
     api_key="...",          # or set GEMINI_API_KEY env var
-    model="gemini-2.0-flash",  # default model
+    model="gemini-2.5-flash",  # default model
 )
 ```
 
